@@ -1,17 +1,15 @@
-//
-//  Moco_Menubar_AppApp.swift
-//  Moco Menubar App
-//
-//  Created by Joshua Sellke on 24.03.25.
-//
-
 import SwiftUI
 
 @main
-struct Moco_Menubar_AppApp: App {
+struct MocoTrayBooking: App {
+    @NSApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
+    @AppStorage("mocoDomain") private var mocoDomain: String = ""
+    @AppStorage("mocoApiKey") private var apiKey: String = ""
+    
     var body: some Scene {
-        WindowGroup {
-            ContentView()
+        Settings {
+            SetupView()
         }
     }
+    
 }

@@ -24,9 +24,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		7BFF70D92D915FCE00CCB993 /* Moco Menubar App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moco Menubar App.app"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BFF70EA2D915FCF00CCB993 /* Moco Menubar AppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moco Menubar AppTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		7BFF70F42D915FCF00CCB993 /* Moco Menubar AppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moco Menubar AppUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BFF70D92D915FCE00CCB993 /* Moco Tray Booking.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Moco Tray Booking.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BFF70EA2D915FCF00CCB993 /* Moco Tray BookingTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moco Tray BookingTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7BFF70F42D915FCF00CCB993 /* Moco Tray BookingUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Moco Tray BookingUITests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -85,9 +85,9 @@
 		7BFF70DA2D915FCE00CCB993 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				7BFF70D92D915FCE00CCB993 /* Moco Menubar App.app */,
-				7BFF70EA2D915FCF00CCB993 /* Moco Menubar AppTests.xctest */,
-				7BFF70F42D915FCF00CCB993 /* Moco Menubar AppUITests.xctest */,
+				7BFF70D92D915FCE00CCB993 /* Moco Tray Booking.app */,
+				7BFF70EA2D915FCF00CCB993 /* Moco Tray BookingTests.xctest */,
+				7BFF70F42D915FCF00CCB993 /* Moco Tray BookingUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,9 +95,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		7BFF70D82D915FCE00CCB993 /* Moco Menubar App */ = {
+		7BFF70D82D915FCE00CCB993 /* Moco Tray Booking */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7BFF70FE2D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Menubar App" */;
+			buildConfigurationList = 7BFF70FE2D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Tray Booking" */;
 			buildPhases = (
 				7BFF70D52D915FCE00CCB993 /* Sources */,
 				7BFF70D62D915FCE00CCB993 /* Frameworks */,
@@ -110,16 +110,16 @@
 			fileSystemSynchronizedGroups = (
 				7BFF70DB2D915FCE00CCB993 /* Moco Menubar App */,
 			);
-			name = "Moco Menubar App";
+			name = "Moco Tray Booking";
 			packageProductDependencies = (
 			);
 			productName = "Moco Menubar App";
-			productReference = 7BFF70D92D915FCE00CCB993 /* Moco Menubar App.app */;
+			productReference = 7BFF70D92D915FCE00CCB993 /* Moco Tray Booking.app */;
 			productType = "com.apple.product-type.application";
 		};
-		7BFF70E92D915FCF00CCB993 /* Moco Menubar AppTests */ = {
+		7BFF70E92D915FCF00CCB993 /* Moco Tray BookingTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7BFF71012D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Menubar AppTests" */;
+			buildConfigurationList = 7BFF71012D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Tray BookingTests" */;
 			buildPhases = (
 				7BFF70E62D915FCF00CCB993 /* Sources */,
 				7BFF70E72D915FCF00CCB993 /* Frameworks */,
@@ -133,16 +133,16 @@
 			fileSystemSynchronizedGroups = (
 				7BFF70ED2D915FCF00CCB993 /* Moco Menubar AppTests */,
 			);
-			name = "Moco Menubar AppTests";
+			name = "Moco Tray BookingTests";
 			packageProductDependencies = (
 			);
 			productName = "Moco Menubar AppTests";
-			productReference = 7BFF70EA2D915FCF00CCB993 /* Moco Menubar AppTests.xctest */;
+			productReference = 7BFF70EA2D915FCF00CCB993 /* Moco Tray BookingTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		7BFF70F32D915FCF00CCB993 /* Moco Menubar AppUITests */ = {
+		7BFF70F32D915FCF00CCB993 /* Moco Tray BookingUITests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 7BFF71042D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Menubar AppUITests" */;
+			buildConfigurationList = 7BFF71042D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Tray BookingUITests" */;
 			buildPhases = (
 				7BFF70F02D915FCF00CCB993 /* Sources */,
 				7BFF70F12D915FCF00CCB993 /* Frameworks */,
@@ -156,11 +156,11 @@
 			fileSystemSynchronizedGroups = (
 				7BFF70F72D915FCF00CCB993 /* Moco Menubar AppUITests */,
 			);
-			name = "Moco Menubar AppUITests";
+			name = "Moco Tray BookingUITests";
 			packageProductDependencies = (
 			);
 			productName = "Moco Menubar AppUITests";
-			productReference = 7BFF70F42D915FCF00CCB993 /* Moco Menubar AppUITests.xctest */;
+			productReference = 7BFF70F42D915FCF00CCB993 /* Moco Tray BookingUITests.xctest */;
 			productType = "com.apple.product-type.bundle.ui-testing";
 		};
 /* End PBXNativeTarget section */
@@ -186,7 +186,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 7BFF70D42D915FCE00CCB993 /* Build configuration list for PBXProject "Moco Menubar App" */;
+			buildConfigurationList = 7BFF70D42D915FCE00CCB993 /* Build configuration list for PBXProject "Moco Tray Booking" */;
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -200,9 +200,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				7BFF70D82D915FCE00CCB993 /* Moco Menubar App */,
-				7BFF70E92D915FCF00CCB993 /* Moco Menubar AppTests */,
-				7BFF70F32D915FCF00CCB993 /* Moco Menubar AppUITests */,
+				7BFF70D82D915FCE00CCB993 /* Moco Tray Booking */,
+				7BFF70E92D915FCF00CCB993 /* Moco Tray BookingTests */,
+				7BFF70F32D915FCF00CCB993 /* Moco Tray BookingUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -258,12 +258,12 @@
 /* Begin PBXTargetDependency section */
 		7BFF70EC2D915FCF00CCB993 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7BFF70D82D915FCE00CCB993 /* Moco Menubar App */;
+			target = 7BFF70D82D915FCE00CCB993 /* Moco Tray Booking */;
 			targetProxy = 7BFF70EB2D915FCF00CCB993 /* PBXContainerItemProxy */;
 		};
 		7BFF70F62D915FCF00CCB993 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 7BFF70D82D915FCE00CCB993 /* Moco Menubar App */;
+			target = 7BFF70D82D915FCE00CCB993 /* Moco Tray Booking */;
 			targetProxy = 7BFF70F52D915FCF00CCB993 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -399,13 +399,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Moco Menubar App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Moco Tray Booking";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.whitepoint.mocoMenubarApp.Moco-Menubar-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitepoint.mocotraybooking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -424,13 +426,15 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Moco Menubar App/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = "Moco Tray Booking";
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.productivity";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.whitepoint.mocoMenubarApp.Moco-Menubar-App";
+				PRODUCT_BUNDLE_IDENTIFIER = com.whitepoint.mocotraybooking;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -450,7 +454,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moco Menubar App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Moco Menubar App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moco Tray Booking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Moco Tray Booking";
 			};
 			name = Debug;
 		};
@@ -467,7 +471,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = NO;
 				SWIFT_VERSION = 5.0;
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moco Menubar App.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Moco Menubar App";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Moco Tray Booking.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/Moco Tray Booking";
 			};
 			name = Release;
 		};
@@ -504,7 +508,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		7BFF70D42D915FCE00CCB993 /* Build configuration list for PBXProject "Moco Menubar App" */ = {
+		7BFF70D42D915FCE00CCB993 /* Build configuration list for PBXProject "Moco Tray Booking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BFF70FC2D915FCF00CCB993 /* Debug */,
@@ -513,7 +517,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7BFF70FE2D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Menubar App" */ = {
+		7BFF70FE2D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Tray Booking" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BFF70FF2D915FCF00CCB993 /* Debug */,
@@ -522,7 +526,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7BFF71012D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Menubar AppTests" */ = {
+		7BFF71012D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Tray BookingTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BFF71022D915FCF00CCB993 /* Debug */,
@@ -531,7 +535,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		7BFF71042D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Menubar AppUITests" */ = {
+		7BFF71042D915FCF00CCB993 /* Build configuration list for PBXNativeTarget "Moco Tray BookingUITests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				7BFF71052D915FCF00CCB993 /* Debug */,
