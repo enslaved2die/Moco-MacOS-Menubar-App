@@ -1,4 +1,11 @@
+import Cocoa
 import SwiftUI
+import AppKit
+
+// 1. Define a delegate protocol in BookingView
+protocol BookingDelegate: AnyObject {
+    func didUpdateLastBookingDate(date: Date)
+}
 
 struct BookingView: View {
     @State private var selectedProject: String = ""
@@ -16,6 +23,9 @@ struct BookingView: View {
     
     @AppStorage("mocoDomain") private var mocoDomain: String = ""
     @AppStorage("mocoApiKey") private var apiKey: String = ""
+    
+    // 2. Add a delegate property
+    weak var delegate: BookingDelegate?
     
     // Computed property for displaying time in HH:mm format
     private var displayTime: String {
@@ -102,10 +112,16 @@ struct BookingView: View {
                 // Fetch projects and tasks when the view appears
                 fetchProjectsAndTasks()
                 isPopoverVisible = true
+                //check lastBookingDate on appear
+                if let lastBookingDate = UserDefaults.standard.value(forKey: "lastBookingDate") as? Date {
+                    print("OnAppear - Last Booking Date: \(lastBookingDate)")
+                } else {
+                    print("OnAppear - No lastBookingDate found")
+                }
             }
             .onDisappear {
                 isPopoverVisible = false
-                bookingSuccess = false
+                bookingSuccess = false // Not used, but kept for consistency
                 errorMessage = nil
             }
             
@@ -123,6 +139,16 @@ struct BookingView: View {
     }
     
     func fetchProjectsAndTasks() {
+        guard !mocoDomain.isEmpty else {
+            errorMessage = "Moco Domain is not set. Please configure in Setup."
+            return
+        }
+        
+        guard !apiKey.isEmpty else {
+            errorMessage = "Moco API Key is not set. Please configure in Setup."
+            return
+        }
+        
         guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/projects/assigned") else {
             print("Invalid MOCO domain")
             errorMessage = "Invalid MOCO domain"
@@ -197,6 +223,15 @@ struct BookingView: View {
     }
     
     func fetchTasks(for projectId: Int, completion: @escaping ([Task]?) -> Void) {
+        guard !mocoDomain.isEmpty else{
+            completion(nil)
+            return
+        }
+        guard !apiKey.isEmpty else{
+            completion(nil)
+            return
+        }
+        
         guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/tasks?project_id=\(projectId)") else {
             print("Invalid project ID or MOCO domain")
             completion(nil)
@@ -246,7 +281,17 @@ struct BookingView: View {
             return
         }
         
-        guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/activities") else { // Changed to /activities
+        guard !mocoDomain.isEmpty else {
+            errorMessage = "Moco Domain is not set. Please configure in Setup."
+            return
+        }
+        
+        guard !apiKey.isEmpty else {
+            errorMessage = "Moco API Key is not set. Please configure in Setup."
+            return
+        }
+        
+        guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/activities") else {
             print("Invalid MOCO domain for booking")
             errorMessage = "Invalid MOCO domain"
             return
@@ -282,7 +327,7 @@ struct BookingView: View {
         }
         
         isLoading = true
-        bookingSuccess = false // Not used
+        bookingSuccess = false
         errorMessage = nil
         
         URLSession.shared.dataTask(with: request) { data, response, error in
@@ -300,9 +345,19 @@ struct BookingView: View {
                     return
                 }
                 
-                if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 { // Changed to accept 200 or 201
-                    // bookingSuccess = true  -> REMOVED
+                if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 {
                     print("Booking successful!")
+                    let bookingDate = Date()
+                    UserDefaults.standard.set(bookingDate, forKey: "lastBookingDate")
+                    // 3. Notify the delegate!
+                    self.delegate?.didUpdateLastBookingDate(date: bookingDate)
+                    
+                    //Clear the form
+                    hours = 0.0
+                    descriptionText = ""
+                    selectedTask = ""
+                    selectedProject = ""
+                    
                 } else {
                     print("Booking failed with status code: \(httpResponse.statusCode)")
                     self.errorMessage = "Booking failed: \(httpResponse.statusCode)"
@@ -334,12 +389,3 @@ struct Task: Codable, Identifiable {
     let id: Int
     let name: String
 }
-
-// New struct for decoding activities
-struct Activity: Codable {
-    let id: Int
-    let date: String
-    let hours: Double
-    // Add other properties as needed
-}
-

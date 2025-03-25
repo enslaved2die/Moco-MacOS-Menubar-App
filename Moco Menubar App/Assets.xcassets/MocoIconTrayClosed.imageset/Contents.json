@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MOCO-Tray@1x.png",
+      "filename" : "MOCO-Tray_closed@1x.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MOCO-Tray@2x.png",
+      "filename" : "MOCO-Tray_closed@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MOCO-Tray@3x.png",
+      "filename" : "MOCO-Tray_closed@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
