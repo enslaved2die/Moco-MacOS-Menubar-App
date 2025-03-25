@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, BookingDelegate {
             print("startBlinking - Start Blinking")
         }
         
-        blinkHold = Double.random(in: 0.5...2.0)
+        blinkHold = Double.random(in: 0.5...5.0)
         print(blinkHold)
         
         DispatchQueue.main.async {
@@ -91,6 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, BookingDelegate {
     
     func startTimer() {
         // Use a timer to periodically check the booking time and start/stop blinking
+        print("Last")
         timer = Timer.scheduledTimer(timeInterval: 60.0, target: self, selector: #selector(checkLastBooking), userInfo: nil, repeats: true)
     }
     

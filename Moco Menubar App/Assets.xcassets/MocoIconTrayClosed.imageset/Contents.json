@@ -1,17 +1,50 @@
 {
   "images" : [
     {
-      "filename" : "MOCO-Tray_closed@1x.png",
+      "filename" : "Moco_Monochrome_Dark_Closed.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MOCO-Tray_closed@2x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Moco_Monochrome_Light_Closed.png",
+      "idiom" : "universal",
+      "scale" : "1x"
+    },
+    {
+      "filename" : "Moco_Monochrome_Dark_Closed@2x.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MOCO-Tray_closed@3x.png",
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Moco_Monochrome_Light_Closed@2x.png",
+      "idiom" : "universal",
+      "scale" : "2x"
+    },
+    {
+      "filename" : "Moco_Monochrome_Dark_Closed@3x.png",
+      "idiom" : "universal",
+      "scale" : "3x"
+    },
+    {
+      "appearances" : [
+        {
+          "appearance" : "luminosity",
+          "value" : "dark"
+        }
+      ],
+      "filename" : "Moco_Monochrome_Light_Closed@3x.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
