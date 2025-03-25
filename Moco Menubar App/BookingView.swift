@@ -13,10 +13,10 @@ struct BookingView: View {
     @State private var errorMessage: String?
     @State private var isPopoverVisible: Bool = false
     @State private var storedProjectId: String = ""
-
+    
     @AppStorage("mocoDomain") private var mocoDomain: String = ""
     @AppStorage("mocoApiKey") private var apiKey: String = ""
-
+    
     // Computed property for displaying time in HH:mm format
     private var displayTime: String {
         let totalMinutes = Int(hours * 60)
@@ -24,13 +24,13 @@ struct BookingView: View {
         let minute = totalMinutes % 60
         return String(format: "%d:%02d", hour, minute)
     }
-
+    
     var body: some View {
         ZStack(alignment: .topTrailing) {
             VStack(spacing: 16) {
                 Text(Date.now, style: .date)
                     .font(.title2)
-
+                
                 // Project picker
                 Picker("Project", selection: $selectedProject) {
                     Text("select project").tag("")
@@ -49,7 +49,7 @@ struct BookingView: View {
                     }
                     storedProjectId = newValue
                 }
-
+                
                 // Task picker
                 Picker("Task", selection: $selectedTask) {
                     Text("select task").tag("")
@@ -58,10 +58,10 @@ struct BookingView: View {
                     }
                 }
                 .pickerStyle(MenuPickerStyle())
-
+                
                 TextField("Description", text: $descriptionText)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-
+                
                 HStack {
                     Button("-") {
                         if hours > 0 { hours -= 0.25 }
@@ -69,7 +69,7 @@ struct BookingView: View {
                     Text(displayTime) // Use the computed property here
                     Button("+") { hours += 0.25 }
                 }
-
+                
                 if isLoading {
                     ProgressView()
                 } else {
@@ -82,7 +82,7 @@ struct BookingView: View {
                     .buttonStyle(.borderedProminent)
                     .cornerRadius(50)
                 }
-
+                
                 // Show only the error message when popover is visible
                 if isPopoverVisible {
                     if let errorMessage = errorMessage {
@@ -108,7 +108,7 @@ struct BookingView: View {
                 bookingSuccess = false
                 errorMessage = nil
             }
-
+            
             // Settings button in top-right corner
             Button(action: { showingSetup = true }) {
                 Image(systemName: "gearshape")
@@ -121,7 +121,7 @@ struct BookingView: View {
             .padding(.trailing, 15)
         }
     }
-
+    
     func fetchProjectsAndTasks() {
         guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/projects/assigned") else {
             print("Invalid MOCO domain")
@@ -130,10 +130,10 @@ struct BookingView: View {
         }
         var request = URLRequest(url: url)
         request.addValue("Token token=\(apiKey)", forHTTPHeaderField: "Authorization")
-
+        
         isLoading = true
         errorMessage = nil
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 isLoading = false
@@ -142,23 +142,23 @@ struct BookingView: View {
                     errorMessage = error.localizedDescription
                     return
                 }
-
+                
                 guard let data = data else {
                     print("No data received for projects")
                     errorMessage = "No data received from server"
                     return
                 }
-
+                
                 if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
                     print("Error: HTTP status code \(httpResponse.statusCode) for projects")
                     errorMessage = "HTTP error: \(httpResponse.statusCode)"
                     return
                 }
-
+                
                 if let decodedResponse = try? JSONDecoder().decode([Project].self, from: data) {
-
+                    
                     var fetchedProjects = decodedResponse
-
+                    
                     let group = DispatchGroup()
                     for index in 0..<fetchedProjects.count {
                         group.enter()
@@ -169,10 +169,11 @@ struct BookingView: View {
                             }
                         }
                     }
-
+                    
                     group.notify(queue: .main) {
-                        self.projects = fetchedProjects
-
+                        // Filter out projects with no tasks
+                        self.projects = fetchedProjects.filter { $0.tasks.count > 0 }
+                        
                         // Restore the selected project, if any, AFTER projects are loaded
                         if let storedProjectInt = Int(storedProjectId),
                            let project = self.projects.first(where: { $0.id == storedProjectInt }) {
@@ -183,7 +184,7 @@ struct BookingView: View {
                             self.tasks = firstProject.tasks
                         }
                     }
-
+                    
                 } else {
                     print("Failed to decode projects data")
                     errorMessage = "Failed to decode project data"
@@ -194,37 +195,37 @@ struct BookingView: View {
             }
         }.resume()
     }
-
+    
     func fetchTasks(for projectId: Int, completion: @escaping ([Task]?) -> Void) {
         guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/tasks?project_id=\(projectId)") else {
             print("Invalid project ID or MOCO domain")
             completion(nil)
             return
         }
-
+        
         var request = URLRequest(url: url)
         request.addValue("Token token=\(apiKey)", forHTTPHeaderField: "Authorization")
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             if let error = error {
                 print("Error fetching tasks: \(error)")
                 completion(nil)
                 return
             }
-
+            
             guard let data = data else {
                 print("No data received for tasks")
                 completion(nil)
                 return
             }
-
+            
             // Check the response status code
             if let httpResponse = response as? HTTPURLResponse, !(200...299).contains(httpResponse.statusCode) {
                 print("Error: HTTP status code \(httpResponse.statusCode) for tasks. Project ID: \(projectId)")
                 completion(nil)
                 return
             }
-
+            
             if let decodedResponse = try? JSONDecoder().decode([Task].self, from: data) {
                 DispatchQueue.main.async {
                     completion(decodedResponse)
@@ -238,30 +239,30 @@ struct BookingView: View {
             }
         }.resume()
     }
-
+    
     func bookTime() {
         guard hours > 0 else {
             errorMessage = "Hours must be greater than 0"
             return
         }
-
+        
         guard let url = URL(string: "https://\(mocoDomain).mocoapp.com/api/v1/activities") else { // Changed to /activities
             print("Invalid MOCO domain for booking")
             errorMessage = "Invalid MOCO domain"
             return
         }
-
+        
         guard let projectId = Int(selectedProject), let taskId = Int(selectedTask) else {
             print("Invalid project or task ID")
             errorMessage = "Invalid project or task ID"
             return
         }
-
+        
         var request = URLRequest(url: url)
         request.httpMethod = "POST"
         request.addValue("Token token=\(apiKey)", forHTTPHeaderField: "Authorization")
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
-
+        
         // Construct the JSON payload according to the API documentation for /activities
         let bookingData: [String: Any] = [
             "date": DateFormatter.yyyyMMdd.string(from: Date()),
@@ -270,7 +271,7 @@ struct BookingView: View {
             "task_id": taskId,
             "description": descriptionText
         ]
-
+        
         do {
             request.httpBody = try JSONSerialization.data(withJSONObject: bookingData)
         } catch {
@@ -279,11 +280,11 @@ struct BookingView: View {
             isLoading = false
             return
         }
-
+        
         isLoading = true
         bookingSuccess = false // Not used
         errorMessage = nil
-
+        
         URLSession.shared.dataTask(with: request) { data, response, error in
             DispatchQueue.main.async {
                 isLoading = false
@@ -292,13 +293,13 @@ struct BookingView: View {
                     self.errorMessage = error.localizedDescription
                     return
                 }
-
+                
                 guard let httpResponse = response as? HTTPURLResponse else {
                     print("Invalid response")
                     self.errorMessage = "Invalid server response"
                     return
                 }
-
+                
                 if httpResponse.statusCode == 200 || httpResponse.statusCode == 201 { // Changed to accept 200 or 201
                     // bookingSuccess = true  -> REMOVED
                     print("Booking successful!")
@@ -341,3 +342,4 @@ struct Activity: Codable {
     let hours: Double
     // Add other properties as needed
 }
+
