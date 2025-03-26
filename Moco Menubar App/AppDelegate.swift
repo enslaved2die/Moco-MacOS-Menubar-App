@@ -18,7 +18,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, BookingDelegate {
     func applicationDidFinishLaunching(_ notification: Notification) {
         
         NSApp.setActivationPolicy(.prohibited)
-        statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
+        statusItem = NSStatusBar.system.statusItem(withLength: 30)
         
         if let button = statusItem?.button {
             button.image = openIcon
