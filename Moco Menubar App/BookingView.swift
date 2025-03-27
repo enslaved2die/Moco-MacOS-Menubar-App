@@ -96,7 +96,7 @@ struct BookingView: View {
                 // Show only the error message when popover is visible
                 if isPopoverVisible {
                     if let errorMessage = errorMessage {
-                        Text("Error: \(errorMessage)")
+                        Text((errorMessage))
                             .foregroundColor(.red)
                             .onAppear {
                                 DispatchQueue.main.asyncAfter(deadline: .now() + 3) {

@@ -24,7 +24,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, BookingDelegate {
             button.image = openIcon
             button.action = #selector(togglePopover)
             button.target = self
-            
         }
         
         popover = NSPopover()
@@ -33,7 +32,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, BookingDelegate {
         bookingView.delegate = self
         popover.contentViewController = NSViewController()
         popover.contentViewController?.view = NSHostingView(rootView: bookingView)
-        popover.behavior = .transient
+        popover.behavior = .semitransient
         
         getLastBookingDate()
         print("AppDidFinishLaunching - Last Booking Date: \(String(describing: lastBookingDate))")
